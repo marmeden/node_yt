@@ -2,6 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const ytdl = require('ytdl-core');
 const app = express();
+var path = require('path');
+
+app.get('/', function (req, res) {
+	res.sendFile(path.join(__dirname, './client/dist/index.html'));
+  });
+  
+app.use('/', express.static(path.join(__dirname, './client/dist')));
+
+
+
 app.listen(4000, () => {
     console.log('Server Works !!! At port 4000');
 });

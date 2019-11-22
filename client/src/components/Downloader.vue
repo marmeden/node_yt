@@ -1,18 +1,26 @@
 <template>
   <div class="">
     <h1 class="heading">My Own Youtube Downloader !</h1>
-    <input class="URL-input" placeholder="https://www.youtube.com/watch?v=MtN1YnoL46Q"><button class="convert-button" id="mp4">Convert mp4</button><button class="convert-button" id='mp3'>Convert mp3</button>
+    <input class="URL-input" placeholder="https://www.youtube.com/watch?v=MtN1YnoL46Q" v-model="myurl">
+    <button class="convert-button" id="mp4" @click="convert('mp4')">Convert mp4</button>
+    <button class="convert-button" @click="convert('mp3')" id='mp3'>Convert mp3</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Downloader',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      myurl: "",
+      server: 'http://localhost:4000'
     }
-  }
+  },
+  methods: {
+    convert(myformat) {
+      window.location.href = `${this.server}/download`+myformat+`?url=${this.myurl}`;
+    }
+  },
 }
 </script>
 
